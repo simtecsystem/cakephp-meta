@@ -90,8 +90,8 @@ class MetaHelper extends Helper {
 		}
 
 		if ($this->meta['title'] === null) {
-			$this->meta['title'] = __(Inflector::humanize(Inflector::underscore($this->request->params['controller']))) . ' - '
-				. __(Inflector::humanize(Inflector::underscore($this->request->params['action'])));
+			$this->meta['title'] = __(Inflector::humanize(Inflector::underscore($this->getRequest()->getParam('controller')))) . ' - '
+				. __(Inflector::humanize(Inflector::underscore($this->getRequest()->getParam('action'))));
 		}
 	}
 
@@ -419,7 +419,7 @@ class MetaHelper extends Helper {
 		$url = $this->meta['canonical'];
 
 		if ($url === true) {
-			$url = $this->request->here;
+			$url = $this->getRequest()->here;
 		} elseif (is_array($url)) {
 			$url = $this->Url->build($url, true);
 		} elseif (!preg_match('/^(https:\/\/|http:\/\/)/', $url)) {
